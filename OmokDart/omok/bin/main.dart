@@ -8,7 +8,13 @@ import 'package:omok/Model/info.dart';
 import 'dart:convert';
 import 'dart:io';
 
-
+/*Authors: 
+* Alan Ochoa
+* Johnatan Garcia
+* Omok Dart
+* Dr.Cheon
+* November 4th
+*/ 
 void main(List<String> args) {
   Controller().start();
 }
