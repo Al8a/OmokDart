@@ -17,13 +17,13 @@ class Board {
 
   Board(this.size, this._gameBoard);
 
-  /*generates a array of size filled with '.' */
+  ///generates a array of size filled with '.'
   static Board generateBoard(size) {
     var board = List.generate(size, (i) => List.filled(size, '.', growable: false), growable: false);
     return Board(size,board);
   }
 
-  /* make sure that the postion given is a valid  */
+  /// make sure that the postion given is a valid
   bool isMoveValid(var xCoordinate, var yCoordinate) {
     if ((xCoordinate < 1 || xCoordinate > size) || (yCoordinate < 1 || yCoordinate > size)) {
       return false;
@@ -36,7 +36,7 @@ class Board {
     return true;
   }
 
-  /* methods is responsible for placing the stone with the symbol */
+  /// methods is responsible for placing the stone with the symbol
   void updateBoard(var xCoordinate, var yCoordinate, String symbol) {
     gameBoard[xCoordinate][yCoordinate] = symbol;
   }
@@ -48,7 +48,7 @@ class Board {
     }
   }
 
-  /*Gets row*/
+  ///Gets row
   List<dynamic> getWinningRow(var ackMove, var move) {
     if (ackMove.length == 10) {
       return ackMove;
