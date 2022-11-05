@@ -95,31 +95,30 @@ class ConsoleUI {
 
   void playGame(Board board, String pid) async {
     while (true) {
+      var responseParser = ResponseParser();
+
       var coordinates = promptMove(board);
       var server = WebClient(WebClient.defaultServer);
-
       var combinedCoordinates = '${coordinates[0] - 1},${coordinates[1] - 1}';
-
       var response = await server.getAckMove(pid, combinedCoordinates);
       var ackMove = response['ack_move'];
       var move = response['move'] ?? {'isWin': false, 'isDraw': false};
 
-      if (ResponseParser.checkIfGameOver(ackMove['isDraw'], move['isDraw'], ackMove['isWin'], move['isWin'])) {
 
+      if (ResponseParser.checkIfGameOver(ackMove['isDraw'], move['isDraw'], ackMove['isWin'], move['isWin'])) {
         board.updateBoard(ackMove['y'], ackMove['x'], 'X');
-        if (move.length >= 5) {
+
+        if (move.length == 5) {
           board.updateBoard(move['y'], move['x'], 'O');
         }
-
-        board.updateBoard(move['y'], move['x'], 'O');
 
         var row = board.getWinningRow(ackMove['row'], move['row']);
         board.updateWinningRow(row);
         showBoard(board.gameBoard);
-
         stdout.writeln("the game has ended");
         break;
       } else {
+
         board.updateBoard(ackMove['y'], ackMove['x'], 'X');
         board.updateBoard(move['y'], move['x'], 'O');
       }
@@ -128,8 +127,23 @@ class ConsoleUI {
 }
 
 
+/*
+JSON STRING FORMAT
+{"response": true,
+   "ack_move": {
+     "x": 4,
+     "y": 5,
+     "isWin": false,   // winning move?
+     "isDraw": false,  // draw?
+     "row": []
+    },                 // winning row if isWin is true
 
-
-
-
-// UPdate last coordinates in UI controlling
+    "move": {
+      "x": 4,
+      "y": 6,
+      "isWin": false,
+      "isDraw": false,
+      "row": []
+     }
+ }
+ */

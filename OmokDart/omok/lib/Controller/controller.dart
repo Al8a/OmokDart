@@ -31,5 +31,6 @@ class Controller {
     var pid = await net.getPID(strategySelected);
     ui.showMessage('NEW GAME ID: [${pid['pid']}]');
     ui.playGame(board, pid['pid']);
+
   }
 }

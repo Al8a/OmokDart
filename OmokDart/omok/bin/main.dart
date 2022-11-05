@@ -8,6 +8,7 @@ import 'package:omok/Model/info.dart';
 import 'dart:convert';
 import 'dart:io';
 
+
 void main(List<String> args) {
   Controller().start();
 }
