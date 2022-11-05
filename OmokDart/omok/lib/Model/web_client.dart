@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:io';
 
 
-
+/// give the user a defult server to pick from
 class WebClient {
   static const defaultServer = 'https://www.cs.utep.edu/cheon/cs3360/project/omok/info/';
   var server;
@@ -21,7 +21,7 @@ class WebClient {
     }
   }
 
-
+  ///Used to generate Players game ID
   getPID(String pickedStrategy) async {
     var url = 'https://www.cs.utep.edu/cheon/cs3360/project/omok/new/?';
     var strategy = pickedStrategy;
@@ -35,7 +35,7 @@ class WebClient {
     }
   }
 
-
+  /// Send the players move to the server 
   getAckMove(String pidIn, var xyInput) async {
     var url = 'https://www.cs.utep.edu/cheon/cs3360/project/omok/play/?';
     var pid = pidIn;
